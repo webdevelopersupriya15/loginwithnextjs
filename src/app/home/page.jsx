@@ -20,14 +20,13 @@ const Page = () => {
     dispatch(logout())
     nav.push('/')
   }
-  const ifLogins=()=>{
-    const cookieData=localStorage.getItem('user-data')
-    if(!cookieData) nav.push('/')
- }
-
- useEffect(()=>{
-   ifLogins()
- },[nav])
+  useEffect(() => {
+    const ifLogins = () => {
+        const cookieData = localStorage.getItem('user-data');
+        if (!cookieData) nav.push('/');
+    };
+    ifLogins();
+}, [nav]);
   return (
     <div className='w-full background-img'>
            <Header className="bg-transparent" iconColor="icon-color" />

@@ -19,13 +19,13 @@ const Header = ({ className, iconColor }) => {
     dispatch(logout())
     nav.push('/')
   }
-  const ifLogins=()=>{
-    const cookieData=localStorage.getItem('user-data')
-    if(!cookieData) nav.push('/')
- }
- useEffect(()=>{
-   ifLogins()
- },[])
+  useEffect(() => {
+    const ifLogins = () => {
+        const cookieData = localStorage.getItem('user-data');
+        if (!cookieData) nav.push('/');
+    };
+    ifLogins();
+}, [nav]);
 
  useEffect(() => {
   const handleClickOutside = (event) => {
@@ -51,7 +51,7 @@ const Header = ({ className, iconColor }) => {
     <>
       <div className={`shadow-lg sticky top-0 z-[9] bg-[white] w-[full] ${className}`}>
           <div className='max-w-[1320px] mx-auto flex justify-between lg:pt-3 lg:pb-3 p-2 items-center'>
-              <h1><Link href='/home'><img src='logo1.jpg' width={80} height={50} /></Link></h1>
+              <h1><Link href='/home'><img src='logo1.jpg' width={80} height={50} alt="userpic" /></Link></h1>
               <span className='cursor-pointer relative' ref={menuRef}>
                 {
                   user && user.data.thumbnail 

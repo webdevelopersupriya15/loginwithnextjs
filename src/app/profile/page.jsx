@@ -296,14 +296,13 @@ const Page = () => {
         });
     }
 
-   const ifLogins=()=>{
-    const cookieData=localStorage.getItem('user-data')
-    if(!cookieData) nav.push('/')
-   }
-
-   useEffect(()=>{
-     ifLogins()
-   },[nav])
+   useEffect(() => {
+    const ifLogins = () => {
+        const cookieData = localStorage.getItem('user-data');
+        if (!cookieData) nav.push('/');
+    };
+    ifLogins();
+   }, [nav]);
   return (
     <>
         <Header />
