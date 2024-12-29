@@ -4,6 +4,7 @@ import { FaRegUserCircle } from "react-icons/fa";
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../redux/slices/userSlice';
 import { useRouter } from 'next/navigation';
+import Image from "next/image";
 
 const Header = ({ className, iconColor }) => {
 
@@ -57,7 +58,7 @@ const Header = ({ className, iconColor }) => {
                   user && user.data.thumbnail 
                     ? 
                       <div className='w-[40px] h-[40px] rounded-[50%]' onClick={()=>setPopUPMenu(!popupMneu) }>
-                        <img src={user.path + user.data.thumbnail} className='w-[40px] h-[40px] rounded-[50%]'  />
+                        <Image src={user.path + user.data.thumbnail} className='w-[40px] h-[40px] rounded-[50%]' alt="user thumbnail"  />
                       </div>
                     :
                       <FaRegUserCircle size={30} className={`${iconColor}`} onClick={()=>setPopUPMenu(!popupMneu) }/>

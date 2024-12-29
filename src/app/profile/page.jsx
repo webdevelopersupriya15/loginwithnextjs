@@ -59,7 +59,7 @@ const Page = () => {
         if (keyArray[3]!== 'password') {
            setIsDisplay(false); // Set it to false when we want to hide it
         }
-    }, [keyArray]);
+    }, [loginStatus]);
     const validateForm = () => {
         const newErrors = {};
         if(profileData.name){
@@ -310,7 +310,7 @@ const Page = () => {
             <form method="post"  className='profile  bg-white border lg:w-[80%] w-[100%] p-[20px_10px] text-[14px]' onSubmit={handleProfileUpdate}>
                 <div className='flex items-center'>
                         <div className='w-[75px] h-[75px] rounded-[50%] me-[10px]'>
-				<image src={imgPre || (filepath && profileData.thumbnail ? filepath + profileData.thumbnail : "/user.png")} className='w-full h-full rounded-[50%]' alt="User Thumbnail"  /> 
+				<Image src={imgPre || (filepath && profileData.thumbnail ? filepath + profileData.thumbnail : "/user.png")} className='w-full h-full rounded-[50%]' alt="User Thumbnail"  /> 
 			</div>
                         <span
                                 onClick={() => fileInputRef.current.click()}
