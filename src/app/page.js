@@ -12,6 +12,7 @@ import { login,logout } from "./redux/slices/userSlice";
 import Link from 'next/link';
 import {getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { app } from "./google-config/firebaseConfig";
+import Image from 'next/image';
 
 const SITE_KEY=process.env.NEXT_PUBLIC_SITE_KEY
 
@@ -364,7 +365,7 @@ export default function Home() {
 
               </form>
               <button type="submit" onClick={googleLogin} className="border-[1px] border-[solid] border-[#DDE6F0] text-[14px] text-[#929191] w-full rounded-[3px] py-2 mt-[30px] font-semibold flex items-center ">
-                  <img src="Logo-google-icon-PNG.png" width="18" height="18" className="ms-[10px] " />
+                  <Image src="Logo-google-icon-PNG.png" width="18" height="18" className="ms-[10px] " alt="google-logo" />
                   <span className="ms-[80px]">Login with Google</span>
               </button>
 
@@ -410,7 +411,7 @@ export default function Home() {
 
               </form>
               <button type="button" onClick={googleLogin}  className="border-[1px] border-[solid] border-[#DDE6F0] text-[14px] text-[#929191] w-full rounded-[3px] py-2 mt-[30px] font-semibold flex items-center ">
-                  <img src="Logo-google-icon-PNG.png" width="18" height="18" className="ms-[10px] "  />
+                  <Image src="Logo-google-icon-PNG.png" width="18" height="18" className="ms-[10px] " alt="google logo"  />
                   <span className="ms-[80px]">Login with Google</span>
               </button> 
                  

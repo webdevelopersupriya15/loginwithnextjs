@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 import { toast, ToastContainer } from 'react-toastify';
 
 function Page() {
-    const dispatch = useDispatch();
+    
     const router = useRouter();
     const [otp, setOtp] = useState(['', '', '', '']);
     const inputRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
