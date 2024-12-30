@@ -120,7 +120,7 @@ const Page = () => {
                 toast.error("Failed to fetch user data.");
              });
         
-    },[[reqId]])
+    },[reqId, nav])
 
    
     const handleImagePre=(e)=>{
