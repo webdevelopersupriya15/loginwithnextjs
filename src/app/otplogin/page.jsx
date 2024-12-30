@@ -158,7 +158,9 @@ function Page() {
     }
     const ifLogins=()=>{
         const cookieData=JSON.parse(localStorage.getItem('user-data'))
-        if(cookieData)  router.push('/home');
+        if(cookieData){
+            router.push('/home')
+        }  
     }
     useEffect(()=>{
         ifLogins()

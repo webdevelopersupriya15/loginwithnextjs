@@ -1,3 +1,4 @@
+"use client"
 import Link from 'next/link';
 import React, { useState,useEffect,useRef } from 'react'
 import { FaRegUserCircle } from "react-icons/fa";
@@ -40,7 +41,7 @@ const Header = ({ className, iconColor }) => {
   return () => {
     document.removeEventListener('mousedown', handleClickOutside);
   };
-}, [menuRef]);
+}, []);
 
  let userName = "Guest";
  if (user) {
@@ -52,7 +53,7 @@ const Header = ({ className, iconColor }) => {
     <>
       <div className={`shadow-lg sticky top-0 z-[9] bg-[white] w-[full] ${className}`}>
           <div className='max-w-[1320px] mx-auto flex justify-between lg:pt-3 lg:pb-3 p-2 items-center'>
-              <h1><Link href='/home'><img src='logo1.jpg' width={80} height={50} alt="userpic" /></Link></h1>
+              <h1><Link href='/home'><Image src='logo1.jpg' width={80} height={50} alt="userpic" /></Link></h1>
               <span className='cursor-pointer relative' ref={menuRef}>
                 {
                   user && user.data.thumbnail 

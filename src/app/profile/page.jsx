@@ -20,9 +20,6 @@ const Page = () => {
     const [errors, setErrors] = useState({});
     const [passError,setPassError]=useState('')
     const [isDisplay,setIsDisplay]=useState(true)
-
-    
-    
     const [otpState, setOtpState] = useState({
         timeLeft: null,
         isLoading: false,
@@ -48,18 +45,18 @@ const Page = () => {
     const reqEmail = user && user.data ? user.data.email : ''; // Safely retrieve reqEmail
     const nav=useRouter()
     
-    const existingUser = localStorage.getItem('user-data');
-
-    const loginStatus = existingUser ? JSON.parse(existingUser) : '';
-    const keyArray=(loginStatus && loginStatus.data && typeof loginStatus.data === 'object')?(Object.keys(loginStatus.data)): [];
-
-    //console.log(keyArray[3])
+    
     
     useEffect(() => {
+        const existingUser = localStorage.getItem('user-data');
+        const loginStatus = existingUser ? JSON.parse(existingUser) : '';
+        const keyArray=(loginStatus && loginStatus.data && typeof loginStatus.data === 'object')?(Object.keys(loginStatus.data)): [];
+
+    //console.log(keyArray[3])
         if (keyArray[3]!== 'password') {
            setIsDisplay(false); // Set it to false when we want to hide it
         }
-    }, [loginStatus]);
+    }, []);
     const validateForm = () => {
         const newErrors = {};
         if(profileData.name){
@@ -102,7 +99,7 @@ const Page = () => {
         .then((response) => {
             console.log(response.data);
             const data = response.data.data || {};
-            console.log('redux',user)
+            // console.log('redux',user)
             setFilepath(response.data.file_path )
             setProfileData({
                 name: data.name || "",
@@ -120,9 +117,10 @@ const Page = () => {
             })
             .catch((error) => {
                 console.log(error);
+                toast.error("Failed to fetch user data.");
              });
         
-    },[[reqId, nav]])
+    },[[reqId]])
 
    
     const handleImagePre=(e)=>{
@@ -296,13 +294,14 @@ const Page = () => {
         });
     }
 
-   useEffect(() => {
-    const ifLogins = () => {
-        const cookieData = localStorage.getItem('user-data');
-        if (!cookieData) nav.push('/');
-    };
-    ifLogins();
-   }, [nav]);
+    useEffect(() => {
+        const ifLogins = () => {
+            const cookieData = localStorage.getItem('user-data');
+            if (!cookieData) nav.push('/');
+        };
+    
+        ifLogins();
+    }, []);
   return (
     <>
         <Header />

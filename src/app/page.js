@@ -161,7 +161,9 @@ export default function Home() {
    }
    const ifLogins=()=>{
     const cookieData=JSON.parse(localStorage.getItem('user-data')) ?? null
-    if(cookieData)  router.push('/home');
+    if(cookieData) {
+      router.push('/home')
+    } 
   }
   useEffect(()=>{
     ifLogins()
@@ -237,11 +239,11 @@ export default function Home() {
         // console.log(user)
 
         // IdP data available using getAdditionalUserInfo(result)
-        if (!token) {
-          dispatch(logout());
-          toast.error("Failed to authenticate. Please try again.");
-          return;
-        } 
+        // if (!token) {
+        //   dispatch(logout());
+        //   toast.error("Failed to authenticate. Please try again.");
+        //   return;
+        // } 
 
         const userData = {
           uid: user.uid,
