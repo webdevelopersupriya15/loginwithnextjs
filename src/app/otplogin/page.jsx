@@ -156,16 +156,13 @@ function Page() {
               }
            })
     }
-    const ifLogins = () => {
-        const cookieData = JSON.parse(localStorage.getItem('user-data'));
-        if (cookieData) {
-            router.push('/home');
-        }
-    };
-
-    useEffect(() => {
-        ifLogins();
-    }, [ifLogins]); // Add 'ifLogins' as dependency
+    const ifLogins=()=>{
+        const cookieData=JSON.parse(localStorage.getItem('user-data'))
+        if(cookieData)  router.push('/home');
+    }
+    useEffect(()=>{
+        ifLogins()
+    },[])
 
   return (
     <div className='w-[100%] p-2'>

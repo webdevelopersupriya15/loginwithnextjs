@@ -5,7 +5,7 @@ import { FaRegUserCircle } from "react-icons/fa";
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../redux/slices/userSlice';
 import { useRouter } from 'next/navigation';
-import Image from "next/image";
+import Image from 'next/image'
 
 const Header = ({ className, iconColor }) => {
 
@@ -21,13 +21,13 @@ const Header = ({ className, iconColor }) => {
     dispatch(logout())
     nav.push('/')
   }
-  useEffect(() => {
-    const ifLogins = () => {
-        const cookieData = localStorage.getItem('user-data');
-        if (!cookieData) nav.push('/');
-    };
-    ifLogins();
-}, [nav]);
+  const ifLogins=()=>{
+    const cookieData=localStorage.getItem('user-data')
+    if(!cookieData) nav.push('/')
+ }
+ useEffect(()=>{
+   ifLogins()
+ },[])
 
  useEffect(() => {
   const handleClickOutside = (event) => {
@@ -41,7 +41,7 @@ const Header = ({ className, iconColor }) => {
   return () => {
     document.removeEventListener('mousedown', handleClickOutside);
   };
-}, []);
+}, [menuRef]);
 
  let userName = "Guest";
  if (user) {
@@ -53,13 +53,13 @@ const Header = ({ className, iconColor }) => {
     <>
       <div className={`shadow-lg sticky top-0 z-[9] bg-[white] w-[full] ${className}`}>
           <div className='max-w-[1320px] mx-auto flex justify-between lg:pt-3 lg:pb-3 p-2 items-center'>
-              <h1><Link href='/home'><Image src='logo1.jpg' width={80} height={50} alt="userpic" /></Link></h1>
+              <h1><Link href='/home'><Image src='logo1.jpg' width={80} height={50} alt="" /></Link></h1>
               <span className='cursor-pointer relative' ref={menuRef}>
                 {
                   user && user.data.thumbnail 
                     ? 
                       <div className='w-[40px] h-[40px] rounded-[50%]' onClick={()=>setPopUPMenu(!popupMneu) }>
-                        <Image src={user.path + user.data.thumbnail} className='w-[40px] h-[40px] rounded-[50%]' alt="user thumbnail"  />
+                        <Image src={user.path + user.data.thumbnail} className='w-[40px] h-[40px] rounded-[50%]' alt=""  />
                       </div>
                     :
                       <FaRegUserCircle size={30} className={`${iconColor}`} onClick={()=>setPopUPMenu(!popupMneu) }/>

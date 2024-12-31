@@ -6,10 +6,11 @@ import axios from 'axios';
 import { FaSpinner } from 'react-icons/fa';
 import 'react-toastify/dist/ReactToastify.css';
 import { toast, ToastContainer } from "react-toastify";
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { login,logout } from '../redux/slices/userSlice';
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
+import Image from 'next/image'
+
 const Page = () => {
     const fileInputRef = useRef(null);
     const user = useSelector((state)=>(state.user.value));
@@ -20,6 +21,9 @@ const Page = () => {
     const [errors, setErrors] = useState({});
     const [passError,setPassError]=useState('')
     const [isDisplay,setIsDisplay]=useState(true)
+
+    
+    
     const [otpState, setOtpState] = useState({
         timeLeft: null,
         isLoading: false,
@@ -44,19 +48,21 @@ const Page = () => {
     const reqId = user && user.data ? user.data._id : null; // Safely retrieve reqId
     const reqEmail = user && user.data ? user.data.email : ''; // Safely retrieve reqEmail
     const nav=useRouter()
-    
-    
-    
-    useEffect(() => {
-        const existingUser = localStorage.getItem('user-data');
-        const loginStatus = existingUser ? JSON.parse(existingUser) : '';
-        const keyArray=(loginStatus && loginStatus.data && typeof loginStatus.data === 'object')?(Object.keys(loginStatus.data)): [];
 
-    //console.log(keyArray[3])
-        if (keyArray[3]!== 'password') {
-           setIsDisplay(false); // Set it to false when we want to hide it
-        }
+
+
+    useEffect(() => {
+            const existingUser = localStorage.getItem('user-data');
+            const loginStatus = existingUser ? JSON.parse(existingUser) : '';
+            const keyArray=(loginStatus && loginStatus.data && typeof loginStatus.data === 'object')?(Object.keys(loginStatus.data)): [];
+    
+        //console.log(keyArray[3])
+            if (keyArray[3]!== 'password') {
+               setIsDisplay(false); // Set it to false when we want to hide it
+            }
     }, []);
+    
+    
     const validateForm = () => {
         const newErrors = {};
         if(profileData.name){
@@ -99,7 +105,7 @@ const Page = () => {
         .then((response) => {
             console.log(response.data);
             const data = response.data.data || {};
-            // console.log('redux',user)
+            console.log('redux',user)
             setFilepath(response.data.file_path )
             setProfileData({
                 name: data.name || "",
@@ -117,10 +123,9 @@ const Page = () => {
             })
             .catch((error) => {
                 console.log(error);
-                toast.error("Failed to fetch user data.");
              });
         
-    },[reqId, nav])
+    },[reqId])
 
    
     const handleImagePre=(e)=>{
@@ -293,24 +298,13 @@ const Page = () => {
 
         });
     }
-
-    useEffect(() => {
-        const ifLogins = () => {
-            const cookieData = localStorage.getItem('user-data');
-            if (!cookieData) nav.push('/');
-        };
-    
-        ifLogins();
-    }, [nav]);
   return (
     <>
         <Header />
         <div className='bg-slate-200 lg:h-[100vh] flex flex-col justify-center items-center w-full'>
             <form method="post"  className='profile  bg-white border lg:w-[80%] w-[100%] p-[20px_10px] text-[14px]' onSubmit={handleProfileUpdate}>
                 <div className='flex items-center'>
-                        <div className='w-[75px] h-[75px] rounded-[50%] me-[10px]'>
-				        <Image src={imgPre || (filepath && profileData.thumbnail ? filepath + profileData.thumbnail : "/user.png")} className='w-full h-full rounded-[50%]' alt="User Thumbnail"  /> 
-			</div>
+                        <div className='w-[75px] h-[75px] rounded-[50%] me-[10px]'><Image src={imgPre || (filepath && profileData.thumbnail ? filepath + profileData.thumbnail : "user.png")} className='w-full h-full rounded-[50%]'  alt="pic not found" /> </div>
                         <span
                                 onClick={() => fileInputRef.current.click()}
                                 className="bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-600 transition focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 cursor-pointer"

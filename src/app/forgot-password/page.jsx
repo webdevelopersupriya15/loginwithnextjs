@@ -4,11 +4,11 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useRef, useState } from 'react'
 import { FaSpinner } from 'react-icons/fa';
-import { useDispatch } from 'react-redux';
+
 import { toast, ToastContainer } from 'react-toastify';
 
 function Page() {
-    
+   
     const router = useRouter();
     const [otp, setOtp] = useState(['', '', '', '']);
     const inputRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];

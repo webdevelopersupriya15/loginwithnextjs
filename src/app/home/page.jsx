@@ -2,20 +2,23 @@
 
 import { useRouter } from 'next/navigation';
 import React, { useEffect } from 'react'
+
 import Header from '../common/Header';
 
 const Page = () => {
 
+  
   const nav=useRouter()
 
+ 
+  const ifLogins=()=>{
+    const cookieData=localStorage.getItem('user-data')
+    if(!cookieData) nav.push('/')
+ }
 
-  useEffect(() => {
-    const ifLogins = () => {
-      const cookieData = localStorage.getItem('user-data');
-      if (!cookieData) nav.push('/');
-    };
-    ifLogins();
-  }, [nav]); // Include 'nav' in the dependency array
+ useEffect(()=>{
+   ifLogins()
+ },[])
   return (
     <div className='w-full background-img'>
            <Header className="bg-transparent" iconColor="icon-color" />

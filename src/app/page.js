@@ -12,7 +12,7 @@ import { login,logout } from "./redux/slices/userSlice";
 import Link from 'next/link';
 import {getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { app } from "./google-config/firebaseConfig";
-import Image from 'next/image';
+import Image from 'next/image'
 
 const SITE_KEY=process.env.NEXT_PUBLIC_SITE_KEY
 
@@ -162,9 +162,7 @@ export default function Home() {
    }
    const ifLogins=()=>{
     const cookieData=JSON.parse(localStorage.getItem('user-data')) ?? null
-    if(cookieData) {
-      router.push('/home')
-    } 
+    if(cookieData)  router.push('/home');
   }
   useEffect(()=>{
     ifLogins()
@@ -240,11 +238,11 @@ export default function Home() {
         // console.log(user)
 
         // IdP data available using getAdditionalUserInfo(result)
-        // if (!token) {
-        //   dispatch(logout());
-        //   toast.error("Failed to authenticate. Please try again.");
-        //   return;
-        // } 
+        if (!token) {
+          dispatch(logout());
+          toast.error("Failed to authenticate. Please try again.");
+          return;
+        } 
 
         const userData = {
           uid: user.uid,
@@ -411,7 +409,7 @@ export default function Home() {
 
               </form>
               <button type="button" onClick={googleLogin}  className="border-[1px] border-[solid] border-[#DDE6F0] text-[14px] text-[#929191] w-full rounded-[3px] py-2 mt-[30px] font-semibold flex items-center ">
-                  <Image src="Logo-google-icon-PNG.png" width="18" height="18" className="ms-[10px] " alt="google logo"  />
+                  <Image src="Logo-google-icon-PNG.png" width="18" height="18" className="ms-[10px]" alt="google-logo"  />
                   <span className="ms-[80px]">Login with Google</span>
               </button> 
                  
