@@ -56,7 +56,7 @@ const Page = () => {
         if (keyArray[3]!== 'password') {
            setIsDisplay(false); // Set it to false when we want to hide it
         }
-    }, [nav]);
+    }, []);
     const validateForm = () => {
         const newErrors = {};
         if(profileData.name){
@@ -301,7 +301,7 @@ const Page = () => {
         };
     
         ifLogins();
-    }, []);
+    }, [nav]);
   return (
     <>
         <Header />
